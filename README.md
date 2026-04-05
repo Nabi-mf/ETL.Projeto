@@ -2,6 +2,8 @@
 
 > Pipeline ETL completo em Python que extrai dados da API DummyJSON, transforma e carrega no PostgreSQL — pronto para análise de dados e dashboards.
 
+> A API simula um e-commerce completo com produtos, usuários, carrinhos, posts, receitas e tarefas
+
 ---
 
 ## 📌 Sobre o Projeto
@@ -51,12 +53,24 @@ def extract(resource: str) -> pd.DataFrame:
     limit = 100
 
     while True:
+        url = f"{BASE_URL}/{resource}"
         response = requests.get(url, params={"limit": limit, "skip": skip})
 
         if response.status_code == 200:
             # processa e avança para próxima página
+            data = response.json()
+
+            records = data[resource]
+            total   = data["total"]
+
+            all_records.extend(records)
+            skip += limit
+            print(f"[{resource}] extraídos {len(all_records)}/{total}")
+
+             if skip >= total:
+                break
         else:
-            print(f"Erro: status {response.status_code}")
+            print(f"Erro ao chamar a API: status {response.status_code}")
             break
 
     return pd.DataFrame(all_records)
@@ -151,10 +165,7 @@ python load.py
 
 Ao final você verá:
 ```
-✅ Tabela 'produtos' carregada com sucesso!
-✅ Tabela 'usuarios' carregada com sucesso!
-✅ Tabela 'carrinhos' carregada com sucesso!
-...
+✅ Todas as tabelas foram carregadas com sucesso!
 ```
 
 ---
@@ -203,11 +214,6 @@ As análises que este projeto busca responder com os dados carregados no Postgre
 
 ---
 
-## 🗺️ Próximas Etapas
-
-- [ ] 🗄️ Validar tabelas no pgAdmin com queries SQL
-- [ ] 📊 Conectar PostgreSQL a uma ferramenta de BI (Power BI, Metabase ou Looker Studio)
-- [ ] 📈 Responder as perguntas de negócio com dashboards
 
 ---
 
