@@ -219,4 +219,4 @@ As análises que este projeto busca responder com os dados carregados no Postgre
 
 ## 👤 Autor
 
-Feito por **Wabi** — projeto de estudo em Engenharia e Análise de Dados.
+Feito por **Nabi-mf** — projeto de estudo em Engenharia e Análise de Dados.
