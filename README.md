@@ -2,7 +2,9 @@
 
 > Pipeline ETL completo em Python que extrai dados da API DummyJSON, transforma e carrega no PostgreSQL — pronto para análise de dados e dashboards.
 
-> A API simula um e-commerce completo com produtos, usuários, carrinhos, posts, receitas e tarefas
+> A API simula um e-commerce completo com produtos, usuários, carrinhos, posts, receitas e tarefas.
+
+> São extraídos vários dados brutos da API, as perguntas de negócio referem-se apenas a alguns desses dados extraídos.
 
 ---
 
@@ -146,11 +148,11 @@ pip install requests pandas sqlalchemy psycopg2-binary
 
 ### 3️⃣ Configure as credenciais no `load.py`
 ```python
-usuario = "postgres"
+usuario = "Seu usuario"
 senha   = "sua_senha"
 host    = "localhost"
 porta   = "5432"
-banco   = "projeto_dados"
+banco   = "Nome do banco de dados"
 ```
 
 ### 4️⃣ Crie o banco no PostgreSQL
@@ -197,20 +199,6 @@ As análises que este projeto busca responder com os dados carregados no Postgre
 - Quais usuários têm o **maior valor total** de compras?
 - Qual a **diferença média** entre valor total e valor com desconto?
 - Qual a **média de itens** por carrinho?
-
-### 📝 Posts & 💬 Comentários
-- Quais posts têm o **maior número de visualizações**?
-- Quais comentários receberam **mais curtidas**?
-- Qual usuário **mais posta** conteúdo?
-
-### 🍽️ Receitas
-- Quais receitas têm **menor quantidade de calorias** por porção?
-- Qual culinária tem o **menor tempo médio** de preparo e cozimento?
-- Quais receitas fáceis têm a **melhor avaliação**?
-
-### ✅ Tarefas
-- Qual a **taxa de conclusão** de tarefas por usuário?
-- Quantas tarefas estão **pendentes** vs **concluídas** no total?
 
 ---
 
